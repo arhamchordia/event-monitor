@@ -1,0 +1,66 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5em;
+}
+
+.section {
+    background-color: #f8f9fa;
+    padding: 1.5em;
+    border-radius: 10px;
+    margin-bottom: 1.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section h3 svg {
+    margin-right: 0.5em;
+    color: #007bff;
+}
+
+.download-button {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.8em;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+.instructions {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 0.5em;
+}
+
+.input-field {
+    width: 80%;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}

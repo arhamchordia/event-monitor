@@ -20,6 +20,8 @@ import {
 } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
+import './dashboard.css'; // Import the CSS file
 
 const Dashboard = () => {
     const [blocks, setBlocks] = useState([]);
@@ -29,6 +31,7 @@ const Dashboard = () => {
     const [fetchedEvents, setFetchedEvents] = useState([]);
     const [snackOpen, setSnackOpen] = useState(false);
     const [snackMessage, setSnackMessage] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,22 +75,32 @@ const Dashboard = () => {
     };
 
     return (
-        <Container style={{ marginTop: '2em' }}>
-            <Typography variant="h4" gutterBottom align="center">
+        <Container className="container">
+            <Typography variant="h4" className="title" gutterBottom>
                 Chain Event Dashboard
             </Typography>
+
+            {/* Button to navigate to Downloads page */}
+            <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => navigate('/downloads')}
+                className="button"
+            >
+                Go to Downloads
+            </Button>
 
             <Grid container spacing={4}>
                 {/* Blocks and Transactions Section */}
                 <Grid container item xs={12} spacing={4}>
                     {/* Blocks Section */}
                     <Grid item xs={12} md={6}>
-                        <Paper elevation={3} style={{ padding: '1.5em' }}>
+                        <Paper elevation={3} className="paper">
                             <Typography variant="h6" align="center" gutterBottom>Blocks</Typography>
-                            <TableContainer style={{ maxHeight: 600, overflowY: 'auto' }}>
+                            <TableContainer className="table-container">
                                 <Table size="small" stickyHeader>
                                     <TableHead>
-                                        <TableRow>
+                                        <TableRow className="table-header">
                                             <TableCell>Copy JSON</TableCell>
                                             <TableCell>Height</TableCell>
                                             <TableCell>Timestamp</TableCell>
@@ -118,12 +131,12 @@ const Dashboard = () => {
 
                     {/* Transactions Section */}
                     <Grid item xs={12} md={6}>
-                        <Paper elevation={3} style={{ padding: '1.5em' }}>
+                        <Paper elevation={3} className="paper">
                             <Typography variant="h6" align="center" gutterBottom>Transactions</Typography>
-                            <TableContainer style={{ maxHeight: 600, overflowY: 'auto' }}>
+                            <TableContainer className="table-container">
                                 <Table size="small" stickyHeader>
                                     <TableHead>
-                                        <TableRow>
+                                        <TableRow className="table-header">
                                             <TableCell>Copy JSON</TableCell>
                                             <TableCell>Tx Hash</TableCell>
                                             <TableCell>Height</TableCell>
@@ -168,7 +181,7 @@ const Dashboard = () => {
 
                 {/* TxHash Input Section moved above Events Section */}
                 <Grid item xs={12}>
-                    <Paper elevation={3} style={{ padding: '1.5em', marginTop: '2em' }}>
+                    <Paper elevation={3} className="paper">
                         <Typography variant="h6" align="center" gutterBottom>Fetch Events by Tx Hash</Typography>
                         <Grid container spacing={2} justifyContent="center">
                             <Grid item xs={8}>
@@ -194,10 +207,10 @@ const Dashboard = () => {
 
                         {/* Fetched Events Section */}
                         <Typography variant="h6" align="center" gutterBottom style={{ marginTop: '1em' }}>Fetched Events</Typography>
-                        <TableContainer style={{ maxHeight: 400, overflowY: 'auto', marginTop: '1em' }}>
+                        <TableContainer className="table-container" style={{ maxHeight: 400, marginTop: '1em' }}>
                             <Table size="small" stickyHeader>
                                 <TableHead>
-                                    <TableRow>
+                                    <TableRow className="table-header">
                                         <TableCell>Copy JSON</TableCell>
                                         <TableCell>Event Type</TableCell>
                                         <TableCell>Attributes</TableCell>
@@ -223,47 +236,18 @@ const Dashboard = () => {
                         </TableContainer>
                     </Paper>
                 </Grid>
-
-                {/* Events Section */}
-                <Grid item xs={12}>
-                    <Paper elevation={3} style={{ padding: '1.5em' }}>
-                        <Typography variant="h6" align="center" gutterBottom>Events</Typography>
-                        <TableContainer style={{ maxHeight: 600, overflowY: 'auto' }}>
-                            <Table size="small" stickyHeader>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Copy JSON</TableCell>
-                                        <TableCell>ID</TableCell>
-                                        <TableCell>Event Type</TableCell>
-                                        <TableCell>Attributes</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {events.map((event, index) => (
-                                        <TableRow key={index}>
-                                            <TableCell>
-                                                <IconButton
-                                                    onClick={() => handleCopyToClipboard(JSON.stringify(event.attributes))}
-                                                    size="small"
-                                                >
-                                                    <ContentCopyIcon fontSize="small" />
-                                                </IconButton>
-                                            </TableCell>
-                                            <TableCell>{event.id}</TableCell>
-                                            <TableCell>{event.event_type}</TableCell>
-                                            <TableCell>{JSON.stringify(event.attributes)}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                </Grid>
             </Grid>
 
-            {/* Snackbar for copying feedback */}
-            <Snackbar open={snackOpen} autoHideDuration={3000} onClose={handleSnackClose}>
-                <Alert onClose={handleSnackClose} severity="success">{snackMessage}</Alert>
+            {/* Snackbar for copy notifications */}
+            <Snackbar
+                open={snackOpen}
+                autoHideDuration={3000}
+                onClose={handleSnackClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleSnackClose} severity="success" className="snackbar">
+                    {snackMessage}
+                </Alert>
             </Snackbar>
         </Container>
     );

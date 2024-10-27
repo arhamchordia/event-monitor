@@ -57,4 +57,6 @@ Once the service is up and running, check any of the following links for api dat
 
 ```http://localhost:3000/api/events```
 
+```http://localhost:3000/``` for accessing the FE
+
 And other links by exploring the repository.
