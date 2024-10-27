@@ -1,0 +1,24 @@
+# Ignore Node.js dependencies
+node_modules/
+**/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore local environment variables
+.env
+
+# Ignore logs
+logs/
+*.log
+*.out
+*.pid
+*.seed
+
+# Ignore build artifacts
+event-catcher/bin/
+event-catcher/build/
+event-catcher/dist/
+event-catcher/event-catcher
+event-api/build/
+event-api/dist/

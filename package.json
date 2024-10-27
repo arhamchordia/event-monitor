@@ -1,0 +1,10 @@
+{
+  "name": "event-monitor",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"sh setup.sh && echo 'db setup ready' \" \"sleep 10 && cd events-catcher && go run main.go\" \"sleep 10 && cd events-api && node server.js\" \"sleep 20 && cd events-frontend && npm start\" "
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
